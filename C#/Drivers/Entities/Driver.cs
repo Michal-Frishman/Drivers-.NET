@@ -10,7 +10,10 @@
         public string PhoneNumber { get; set; }
         public bool IsAvailable { get; set; }
         public int SeatsNumber   { get; set; }
-
+        public Driver()
+        {
+            
+        }
         public Driver(int driverId, string firstName, string lastName, int licensePlate, string carModel, string phoneNumber, bool isAvailable, int seatsNumber)
         {
             DriverId = driverId;

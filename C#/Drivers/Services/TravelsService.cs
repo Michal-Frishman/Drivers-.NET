@@ -5,8 +5,11 @@ namespace Drivers.Services
 {
     public class TravelsService
     {
-        public List<Travel> travels { get; set; }
-        public TravelsService() { }
+        public  List<Travel> travels { get; set; }
+        public TravelsService() 
+        { 
+         travels = new List<Travel>();
+        }
         public bool PostTravel(Travel travel)
         {
             if (travels == null) return false;

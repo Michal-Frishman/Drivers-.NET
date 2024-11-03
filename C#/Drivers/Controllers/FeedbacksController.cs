@@ -9,7 +9,7 @@ namespace Drivers.Controllers
     [ApiController]
     public class FeedbacksController : ControllerBase
     {
-        private FeedbacksService feedbacksService;
+        private static FeedbacksService feedbacksService;
 
         // GET: api/<FeedbacksController>
         [HttpGet]
@@ -54,6 +54,11 @@ namespace Drivers.Controllers
             if (feedbacksService.DeleteFeedback(id))
                 return Ok(true);
             return NotFound();
+        }
+        public FeedbacksController()
+        {
+            if (feedbacksService == null)
+                feedbacksService = new FeedbacksService();
         }
     }
 }

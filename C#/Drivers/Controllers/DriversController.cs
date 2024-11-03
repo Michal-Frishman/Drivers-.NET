@@ -11,7 +11,7 @@ namespace Drivers.Controllers
     [ApiController]
     public class DriversController : ControllerBase
     {
-        private DriversService driversService;
+        private static DriversService driversService;
         // GET: api/<DriveresController>
         [HttpGet]
         public ActionResult<List<Driver>> Get()
@@ -25,7 +25,7 @@ namespace Drivers.Controllers
         [HttpGet("{id}")]
         public ActionResult<Driver> Get(int id)
         {
-            if(driversService.GetDriverById(id)!=null)
+            if (driversService.GetDriverById(id) != null)
                 return driversService.GetDriverById(id);
             return NotFound();
         }
@@ -52,9 +52,14 @@ namespace Drivers.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete(int id)
         {
-            if(driversService.DeleteDriver(id))
+            if (driversService.DeleteDriver(id))
                 return Ok(true);
             return NotFound();
+        }
+        public DriversController()
+        {
+            if (driversService == null)
+                driversService = new DriversService();
         }
     }
 }

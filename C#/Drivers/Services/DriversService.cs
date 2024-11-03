@@ -5,11 +5,12 @@ namespace Drivers.Services
 {
     public class DriversService
     {
-        public List<Driver> drivers { get; set; }
-        public DriversService() 
-        { 
+        public  List<Driver> drivers { get; set; }
+        public DriversService()
+        {
             drivers = new List<Driver>();
         }
+
         public Driver GetDriverById(int id)
         {
             if (drivers == null) { return null; }
@@ -18,9 +19,9 @@ namespace Drivers.Services
         public bool PutDriver(int id, Driver driver)
         {
             if (drivers == null) return false;
-            int index = drivers.FindIndex(d=>d.DriverId==id);
+            int index = drivers.FindIndex(d => d.DriverId == id);
             drivers.Insert(index, driver);
-            drivers[index] = driver;
+            //drivers[index] = driver;
             return true;
         }
         public bool PostDriver(Driver driver)
@@ -31,9 +32,9 @@ namespace Drivers.Services
         }
         public bool DeleteDriver(int id)
         {
-            if(drivers.Find(d => d.DriverId == id) == null)
+            if (drivers.Find(d => d.DriverId == id) == null)
                 return false;
-           return drivers.Remove(drivers.Find(d => d.DriverId == id));
+            return drivers.Remove(drivers.Find(d => d.DriverId == id));
         }
 
     }

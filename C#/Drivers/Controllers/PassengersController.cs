@@ -10,7 +10,7 @@ namespace Drivers.Controllers
     [ApiController]
     public class PassengersController : ControllerBase
     {
-        private PassengersService passengersService;
+        private static PassengersService passengersService;
         // GET: api/<PassengersController>
         [HttpGet]
         public ActionResult<List<Passenger>> Get()
@@ -55,6 +55,11 @@ namespace Drivers.Controllers
             if (passengersService.DeletePassenger(id))
                 return Ok(true);
             return NotFound();
+        }
+        public PassengersController()
+        {
+            if (passengersService == null)
+                passengersService = new PassengersService();
         }
     }
 }

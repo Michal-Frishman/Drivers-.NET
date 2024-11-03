@@ -5,8 +5,11 @@ namespace Drivers.Services
 {
     public class PassengersService
     {
-        public List<Passenger> passengers { get; set; }
-        public PassengersService() { }
+        public  List<Passenger> passengers { get; set; }
+        public PassengersService() 
+        { 
+            passengers = new List<Passenger>();
+        }
         public bool PostPassenger(Passenger passenger)
         {
             if (passengers == null) return false;

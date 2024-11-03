@@ -442,11 +442,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\Drivers\\Drivers\\Drivers.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Desktop\\Drivers\\C#\\Drivers\\Drivers.csproj",
       "projectName": "Drivers",
-      "projectPath": "C:\\Users\\user\\Desktop\\Drivers\\Drivers\\Drivers.csproj",
+      "projectPath": "C:\\Users\\user\\Desktop\\Drivers\\C#\\Drivers\\Drivers.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\Drivers\\Drivers\\obj\\",
+      "outputPath": "C:\\Users\\user\\Desktop\\Drivers\\C#\\Drivers\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
