@@ -5,34 +5,33 @@ namespace Drivers.Services
 {
     public class TravelsService
     {
-        public  List<Travel> travels { get; set; }
         public TravelsService() 
-        { 
-         travels = new List<Travel>();
-        }
-        public bool PostTravel(Travel travel)
         {
-            if (travels == null) return false;
-            travels.Add(travel);
+            DataContextManager.DataContext.travels = new List<Travel>();
+        }
+        public bool Add(Travel travel)
+        {
+            if (DataContextManager.DataContext.travels == null) return false;
+            DataContextManager.DataContext.travels.Add(travel);
             return true;
         }
-        public Travel GetTravelById(int id)
+        public Travel GetById(int id)
         {
-            if (travels == null) { return null; }
-            return travels.Where(t => t.TravelId == id).FirstOrDefault<Travel>();
+            if (DataContextManager.DataContext.travels == null) { return null; }
+            return DataContextManager.DataContext.travels.Where(t => t.TravelId == id).FirstOrDefault<Travel>();
         }
-        public bool DeleteTravel(int id)
+        public bool Delete(int id)
         {
-            if (travels.Find(d => d.TravelId == id) == null)
+            if (DataContextManager.DataContext.travels.Find(d => d.TravelId == id) == null)
                 return false;
-            return travels.Remove(travels.Find(d => d.TravelId == id));
+            return DataContextManager.DataContext.travels.Remove(DataContextManager.DataContext.travels.Find(d => d.TravelId == id));
         }
-        public bool PutTravel(int id, Travel travel)
+        public bool Update(int id, Travel travel)
         {
-            if (travels == null) return false;
-            int index = travels.IndexOf(travel);
-            travels.Insert(index, travel);
-            travels[index] = travel;
+            if (DataContextManager.DataContext.travels == null) return false;
+            int index = DataContextManager.DataContext.travels.IndexOf(travel);
+            DataContextManager.DataContext.travels.Insert(index, travel);
+            DataContextManager.DataContext.travels[index] = travel;
             return true;
         }
     }

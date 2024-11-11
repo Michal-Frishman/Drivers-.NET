@@ -15,18 +15,16 @@ namespace Drivers.Controllers
         [HttpGet]
         public ActionResult<List<Passenger>> Get()
         {
-            if (passengersService.passengers != null)
-                return passengersService.passengers;
-            return NotFound();
+            return DataContextManager.DataContext.passengers;
 
         }
 
         // GET api/<PassengersController>/5
         [HttpGet("{id}")]
-        public ActionResult<Passenger> Get(int id)
+        public ActionResult<Passenger> GetById(int id)
         {
-            if (passengersService.GetPassengerById(id) != null)
-                return passengersService.GetPassengerById(id);
+            if (passengersService.GetById(id) != null)
+                return passengersService.GetById(id);
             return NotFound();
         }
 
@@ -34,7 +32,9 @@ namespace Drivers.Controllers
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Passenger passenger)
         {
-            if (passengersService.PostPassenger(passenger))
+            if (DataContextManager.DataContext.passengers == null)
+                DataContextManager.DataContext.passengers = new List<Passenger>();
+            if (passengersService.Add(passenger))
                 return Ok(true);
             return NotFound();
         }
@@ -43,7 +43,7 @@ namespace Drivers.Controllers
         [HttpPut("{id}")]
         public ActionResult<bool> Put(int id, [FromBody] Passenger passenger)
         {
-            if (passengersService.PutPassenger(id, passenger))
+            if (passengersService.Update(id, passenger))
                 return Ok(true);
             return NotFound();
         }
@@ -52,7 +52,7 @@ namespace Drivers.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete(int id)
         {
-            if (passengersService.DeletePassenger(id))
+            if (passengersService.Delete(id))
                 return Ok(true);
             return NotFound();
         }

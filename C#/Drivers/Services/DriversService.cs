@@ -5,36 +5,34 @@ namespace Drivers.Services
 {
     public class DriversService
     {
-        public  List<Driver> drivers { get; set; }
         public DriversService()
         {
-            drivers = new List<Driver>();
+            DataContextManager.DataContext.drivers = new List<Driver>();
         }
 
-        public Driver GetDriverById(int id)
+        public Driver GetById(int id)
         {
-            if (drivers == null) { return null; }
-            return drivers.Where(d => d.DriverId == id).FirstOrDefault<Driver>();
+            if (DataContextManager.DataContext.drivers == null) { return null; }
+            return DataContextManager.DataContext.drivers.Where(d => d.DriverId == id).FirstOrDefault<Driver>();
         }
-        public bool PutDriver(int id, Driver driver)
+        public bool Update(int id, Driver driver)
         {
-            if (drivers == null) return false;
-            int index = drivers.FindIndex(d => d.DriverId == id);
-            drivers.Insert(index, driver);
-            //drivers[index] = driver;
+            if (DataContextManager.DataContext.drivers == null) return false;
+            int index = DataContextManager.DataContext.drivers.FindIndex(d => d.DriverId == id);
+            DataContextManager.DataContext.drivers[index] = driver;
             return true;
         }
-        public bool PostDriver(Driver driver)
+        public bool Add(Driver driver)
         {
-            if (drivers == null) return false;
-            drivers.Add(driver);
+            if (DataContextManager.DataContext.drivers == null) return false;
+            DataContextManager.DataContext.drivers.Add(driver);
             return true;
         }
-        public bool DeleteDriver(int id)
+        public bool Delete(int id)
         {
-            if (drivers.Find(d => d.DriverId == id) == null)
+            if (DataContextManager.DataContext.drivers.Find(d => d.DriverId == id) == null)
                 return false;
-            return drivers.Remove(drivers.Find(d => d.DriverId == id));
+            return DataContextManager.DataContext.drivers.Remove(DataContextManager.DataContext.drivers.Find(d => d.DriverId == id));
         }
 
     }

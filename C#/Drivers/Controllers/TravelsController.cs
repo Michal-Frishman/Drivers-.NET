@@ -15,18 +15,16 @@ namespace Drivers.Controllers
         [HttpGet]
         public ActionResult<List<Travel>> Get()
         {
-            if (travelsService.travels != null)
-                return travelsService.travels;
-            return NotFound();
+           return  DataContextManager.DataContext.travels;
 
         }
 
         // GET api/<TravelדController>/5
         [HttpGet("{id}")]
-        public ActionResult<Travel> Get(int id)
+        public ActionResult<Travel> GetById(int id)
         {
-            if (travelsService.GetTravelById(id) != null)
-                return travelsService.GetTravelById(id);
+            if (travelsService.GetById(id) != null)
+                return travelsService.GetById(id);
             return NotFound();
 
         }
@@ -35,7 +33,9 @@ namespace Drivers.Controllers
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Travel travel)
         {
-            if (travelsService.PostTravel(travel))
+            if (DataContextManager.DataContext.travels == null)
+                DataContextManager.DataContext.travels = new List<Travel>();
+            if (travelsService.Add(travel))
                 return Ok(true);
             return NotFound();
         }
@@ -44,7 +44,7 @@ namespace Drivers.Controllers
         [HttpPut("{id}")]
         public ActionResult<bool> Put(int id, [FromBody] Travel travel)
         {
-            if (travelsService.PutTravel(id, travel))
+            if (travelsService.Update(id, travel))
                 return Ok(true);
             return NotFound();
         }
@@ -53,7 +53,7 @@ namespace Drivers.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete(int id)
         {
-            if (travelsService.DeleteTravel(id))
+            if (travelsService.Delete(id))
                 return Ok(true);
             return NotFound();
         }

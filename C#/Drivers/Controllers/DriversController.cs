@@ -16,17 +16,17 @@ namespace Drivers.Controllers
         [HttpGet]
         public ActionResult<List<Driver>> Get()
         {
-            if (driversService.drivers != null)
-                return driversService.drivers;
-            return NotFound();
+            return DataContextManager.DataContext.drivers;
         }
 
         // GET api/<DriveresController>/5
         [HttpGet("{id}")]
-        public ActionResult<Driver> Get(int id)
+        public ActionResult<Driver> GetById(int id)
         {
-            if (driversService.GetDriverById(id) != null)
-                return driversService.GetDriverById(id);
+            if (id < 0)
+                return BadRequest();
+            if (driversService.GetById(id) != null)
+                return driversService.GetById(id);
             return NotFound();
         }
 
@@ -34,7 +34,11 @@ namespace Drivers.Controllers
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Driver driver)
         {
-            if (driversService.PostDriver(driver))
+            if (!isValid(driver))
+                return BadRequest();
+            if (DataContextManager.DataContext.drivers == null)
+                DataContextManager.DataContext.drivers = new List<Driver>();
+            if (driversService.Add(driver))
                 return Ok(true);
             return NotFound();
         }
@@ -43,7 +47,9 @@ namespace Drivers.Controllers
         [HttpPut("{id}")]
         public ActionResult<bool> Put(int id, [FromBody] Driver driver)
         {
-            if (driversService.PutDriver(id, driver))
+            if(!isValid(driver))
+                return BadRequest();
+            if (driversService.Update(id, driver))
                 return Ok(true);
             return NotFound();
         }
@@ -52,14 +58,19 @@ namespace Drivers.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete(int id)
         {
-            if (driversService.DeleteDriver(id))
+            if (driversService.Delete(id))
                 return Ok(true);
             return NotFound();
         }
         public DriversController()
         {
+
             if (driversService == null)
                 driversService = new DriversService();
+        }
+        private bool isValid(Driver driver)
+        {
+           return Validation.IsValidIsraeliID(driver.DriverTz);
         }
     }
 }

@@ -3,6 +3,8 @@
     public class Driver
     {
         public int DriverId { get; set; }
+        public string DriverTz { get; set; }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int LicensePlate { get; set; }
@@ -14,9 +16,10 @@
         {
             
         }
-        public Driver(int driverId, string firstName, string lastName, int licensePlate, string carModel, string phoneNumber, bool isAvailable, int seatsNumber)
+        public Driver(int driverId,string driverTz, string firstName, string lastName, int licensePlate, string carModel, string phoneNumber, bool isAvailable, int seatsNumber)
         {
             DriverId = driverId;
+            DriverTz = driverTz;
             FirstName = firstName;
             LastName = lastName;
             LicensePlate = licensePlate;

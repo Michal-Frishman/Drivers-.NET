@@ -5,35 +5,32 @@ namespace Drivers.Services
 {
     public class FeedbacksService
     {
-        public  List<Feedback> feedbacks { get; set; }
         public FeedbacksService() 
-        { 
-            feedbacks = new List<Feedback>();
-        }
-        public Feedback GetFeedbackById(int id)
         {
-            if (feedbacks == null) { return null; }
-            return feedbacks.Where(f => f.FeedbackId == id).FirstOrDefault<Feedback>();
+            DataContextManager.DataContext.feedbacks = new List<Feedback>();
         }
-        public bool PostFeedback(Feedback feedback)
+        public Feedback GetById(int id)
         {
-            if (feedbacks == null) return false;
-            feedbacks.Add(feedback);
+            if (DataContextManager.DataContext.feedbacks == null) { return null; }
+            return DataContextManager.DataContext.feedbacks.Where(f => f.FeedbackId == id).FirstOrDefault<Feedback>();
+        }
+        public bool Add(Feedback feedback)
+        {
+            if (DataContextManager.DataContext.feedbacks == null) return false;
+            DataContextManager.DataContext.feedbacks.Add(feedback);
             return true;
         }
-        public bool DeleteFeedback(int id)
+        public bool Delete(int id)
         {
-            if (feedbacks.Find(d => d.DriverId == id) == null)
+            if (DataContextManager.DataContext.feedbacks.Find(d => d.DriverId == id) == null)
                 return false;
-            return feedbacks.Remove(feedbacks.Find(f => f.FeedbackId == id));
+            return DataContextManager.DataContext.feedbacks.Remove(DataContextManager.DataContext.feedbacks.Find(f => f.FeedbackId == id));
         }
-        public bool PutFeedback(int id, Feedback feedback)
+        public bool Update(int id, Feedback feedback)
         {
-            if (feedbacks == null) return false;
-            int index = feedbacks.IndexOf(feedback);
-            //----------
-            feedbacks.Insert(index, feedback);
-            feedbacks[index] = feedback;
+            if (DataContextManager.DataContext.feedbacks == null) return false;
+            int index = DataContextManager.DataContext.feedbacks.IndexOf(feedback);
+            DataContextManager.DataContext.feedbacks[index] = feedback;
             return true;
         }
 

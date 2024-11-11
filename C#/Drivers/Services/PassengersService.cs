@@ -5,35 +5,34 @@ namespace Drivers.Services
 {
     public class PassengersService
     {
-        public  List<Passenger> passengers { get; set; }
         public PassengersService() 
-        { 
-            passengers = new List<Passenger>();
-        }
-        public bool PostPassenger(Passenger passenger)
         {
-            if (passengers == null) return false;
-            passengers.Add(passenger);
+            DataContextManager.DataContext.passengers = new List<Passenger>();
+        }
+        public bool Add(Passenger passenger)
+        {
+            if (DataContextManager.DataContext.passengers == null) return false;
+            DataContextManager.DataContext.passengers.Add(passenger);
             return true;
         }
-        public Passenger GetPassengerById(int id)
+        public Passenger GetById(int id)
         {
-            if (passengers == null) { return null; }
-            return passengers.Where(p => p.PassengerId == id).FirstOrDefault<Passenger>();
+            if (DataContextManager.DataContext.passengers == null) { return null; }
+            return DataContextManager.DataContext.passengers.Where(p => p.PassengerId == id).FirstOrDefault<Passenger>();
         }
 
-        public bool DeletePassenger(int id)
+        public bool Delete(int id)
         {
-            if (passengers.Find(p => p.PassengerId == id) == null)
+            if (DataContextManager.DataContext.passengers.Find(p => p.PassengerId == id) == null)
                 return false;
-            return passengers.Remove(passengers.Find(p => p.PassengerId == id));
+            return DataContextManager.DataContext.passengers.Remove(DataContextManager.DataContext.passengers.Find(p => p.PassengerId == id));
         }
-        public bool PutPassenger(int id, Passenger passenger)
+        public bool Update(int id, Passenger passenger)
         {
-            if (passengers == null) return false;
-            int index = passengers.IndexOf(passenger);
-            passengers.Insert(index, passenger);
-            passengers[index] = passenger;
+            if (DataContextManager.DataContext.passengers == null) return false;
+            int index = DataContextManager.DataContext.passengers.IndexOf(passenger);
+            DataContextManager.DataContext.passengers.Insert(index, passenger);
+            DataContextManager.DataContext.passengers[index] = passenger;
             return true;
         }
     }
