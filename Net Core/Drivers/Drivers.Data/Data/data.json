@@ -1,0 +1,115 @@
+{
+  drivers:
+  [
+    {
+      "DriverId": 1,
+      "DriverTz": "123456789",
+      "FirstName": "John",
+      "LastName": "Doe",
+      "LicensePlate": 1234567,
+      "CarModel": "Toyota Corolla",
+      "PhoneNumber": "054-1234567",
+      "IsAvailable": true,
+      "SeatsNumber": 4
+    },
+    {
+      "DriverId": 2,
+      "DriverTz": "987654321",
+      "FirstName": "Jane",
+      "LastName": "Smith",
+      "LicensePlate": 7654321,
+      "CarModel": "Honda Civic",
+      "PhoneNumber": "052-7654321",
+      "IsAvailable": false,
+      "SeatsNumber": 5
+    },
+    {
+      "DriverId": 3,
+      "DriverTz": "456123789",
+      "FirstName": "Mike",
+      "LastName": "Johnson",
+      "LicensePlate": 4567890,
+      "CarModel": "Ford Focus",
+      "PhoneNumber": "053-4567890",
+      "IsAvailable": true,
+      "SeatsNumber": 4
+    },
+    {
+      "DriverId": 4,
+      "DriverTz": "321654987",
+      "FirstName": "Emily",
+      "LastName": "Davis",
+      "LicensePlate": 3219876,
+      "CarModel": "Chevrolet Malibu",
+      "PhoneNumber": "054-3219876",
+      "IsAvailable": true,
+      "SeatsNumber": 4
+    },
+    {
+      "DriverId": 5,
+      "DriverTz": "654987321",
+      "FirstName": "Chris",
+      "LastName": "Wilson",
+      "LicensePlate": 6541234,
+      "CarModel": "Nissan Altima",
+      "PhoneNumber": "050-6541234",
+      "IsAvailable": false,
+      "SeatsNumber": 5
+    },
+    {
+      "DriverId": 6,
+      "DriverTz": "112233445",
+      "FirstName": "Anna",
+      "LastName": "Brown",
+      "LicensePlate": 1122334,
+      "CarModel": "Hyundai Elantra",
+      "PhoneNumber": "052-1122334",
+      "IsAvailable": true,
+      "SeatsNumber": 4
+    },
+    {
+      "DriverId": 7,
+      "DriverTz": "998877665",
+      "FirstName": "David",
+      "LastName": "Martinez",
+      "LicensePlate": 9988776,
+      "CarModel": "Kia Sportage",
+      "PhoneNumber": "053-9988776",
+      "IsAvailable": true,
+      "SeatsNumber": 5
+    },
+    {
+      "DriverId": 8,
+      "DriverTz": "776655443",
+      "FirstName": "Sophie",
+      "LastName": "Clark",
+      "LicensePlate": 7766554,
+      "CarModel": "Mazda CX-5",
+      "PhoneNumber": "050-7766554",
+      "IsAvailable": false,
+      "SeatsNumber": 5
+    },
+    {
+      "DriverId": 9,
+      "DriverTz": "334455667",
+      "FirstName": "James",
+      "LastName": "Lewis",
+      "LicensePlate": 3344556,
+      "CarModel": "Subaru Outback",
+      "PhoneNumber": "054-3344556",
+      "IsAvailable": true,
+      "SeatsNumber": 4
+    },
+    {
+      "DriverId": 10,
+      "DriverTz": "445566778",
+      "FirstName": "Laura",
+      "LastName": "Harris",
+      "LicensePlate": 4455667,
+      "CarModel": "Volkswagen Passat",
+      "PhoneNumber": "052-4455667",
+      "IsAvailable": true,
+      "SeatsNumber": 5
+    }
+  ]
+}

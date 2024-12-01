@@ -11,37 +11,57 @@ namespace Drivers.Controllers
     [ApiController]
     public class DriversController : ControllerBase
     {
-        private static DriversService driversService;
+        readonly DriversService _driverSerice;
+        public DriversController(DriversService driversService)
+        {
+            _driverSerice = driversService;
+        }
+        //private static DriversService driversService;
         // GET: api/<DriveresController>
         [HttpGet]
         public ActionResult<List<Driver>> Get()
         {
-            return DataContextManager.DataContext.drivers;
+            List<Driver> result = _driverSerice.GetList();
+            if (result == null) { return NotFound(); }
+            return (result);
         }
 
         // GET api/<DriveresController>/5
-        [HttpGet("{id}")]
+        [HttpGet("GetById{id}")]
         public ActionResult<Driver> GetById(int id)
         {
-            if (id < 0)
-                return BadRequest();
-            if (driversService.GetById(id) != null)
-                return driversService.GetById(id);
-            return NotFound();
+            if (id < 0) { return BadRequest(); }
+            Driver result = _driverSerice.GetById(id);
+            if (result == null) { return NotFound(); }
+            return (result);
+            //if (id < 0)
+            //    return BadRequest();
+            //if (driversService.GetById(id) != null)
+            //    return driversService.GetById(id);
+            //return NotFound();
         }
-
         // POST api/<DriveresController>
         [HttpPost]
         public ActionResult<bool> Post([FromBody] Driver driver)
         {
-            if (!isValid(driver))
-                return BadRequest();
-            if (DataContextManager.DataContext.drivers == null)
-                DataContextManager.DataContext.drivers = new List<Driver>();
-            if (driversService.Add(driver))
-                return Ok(true);
-            return NotFound();
+            var result = _driverSerice.Add(driver);
+            if (!result)
+            {
+                return BadRequest(false);
+            }
+            else
+                return true;
         }
+        //public ActionResult<bool> Post([FromBody] Driver driver)
+        //{
+        //    if (!isValid(driver))
+        //        return BadRequest();
+        //    if (DataContextManager.DataContext.drivers == null)
+        //        DataContextManager.DataContext.drivers = new List<Driver>();
+        //    if (driversService.Add(driver))
+        //        return Ok(true);
+        //    return NotFound();
+        //}
 
         // PUT api/<DriveresController>/5
         [HttpPut("{id}")]
@@ -49,7 +69,7 @@ namespace Drivers.Controllers
         {
             if(!isValid(driver))
                 return BadRequest();
-            if (driversService.Update(id, driver))
+            if (_driverSerice.Update(id, driver))
                 return Ok(true);
             return NotFound();
         }
@@ -58,16 +78,11 @@ namespace Drivers.Controllers
         [HttpDelete("{id}")]
         public ActionResult<bool> Delete(int id)
         {
-            if (driversService.Delete(id))
+            if (_driverSerice.Delete(id))
                 return Ok(true);
             return NotFound();
         }
-        public DriversController()
-        {
 
-            if (driversService == null)
-                driversService = new DriversService();
-        }
         private bool isValid(Driver driver)
         {
            return Validation.IsValidIsraeliID(driver.DriverTz);

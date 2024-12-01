@@ -1,0 +1,15 @@
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.AssemblyInfo.cs
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\bin\Debug\net6.0\Drivers.Data.deps.json
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\bin\Debug\net6.0\Drivers.Data.dll
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\bin\Debug\net6.0\Drivers.Data.pdb
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\bin\Debug\net6.0\Drivers.Core.dll
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\bin\Debug\net6.0\Drivers.Core.pdb
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.csproj.CopyComplete
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.dll
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\refint\Drivers.Data.dll
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.pdb
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\ref\Drivers.Data.dll

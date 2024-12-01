@@ -1,6 +1,8 @@
 using Drivers.Controllers;
 using Drivers.Entities;
+using Drivers.Services;
 using Microsoft.AspNetCore.Mvc;
+using TestProject1;
 
 namespace TestProject1
 {
@@ -11,7 +13,9 @@ namespace TestProject1
         {
             //Arrange
             //Act
-            var test = (new DriversController()).Get();
+            //var test = (new DriversController()).Get();
+            var controler = new DriversController(new DriversService(new TestContext()));
+            var test = controler.Get();
             //Assert
             Assert.IsType<ActionResult<List<Driver>>>(test);
             //Assert.IsType<List<CustomerEntity>>(test);
@@ -23,7 +27,8 @@ namespace TestProject1
             //Arrange
             var id = -1;
             //Act
-            var test = (new DriversController()).GetById(id);
+            var controler = new DriversController(new DriversService(new TestContext()));
+            var test = controler.GetById(id);
             //Assert
             Assert.IsType<BadRequestResult>(test.Result);
         }
@@ -31,9 +36,10 @@ namespace TestProject1
         public void GetById_ReturnsNotFound()
         {
             //Arrange
-            var id = 2;
+            var id = 700;
             //Act
-            var test = (new DriversController()).GetById(id);
+            var controler = new DriversController(new DriversService(new TestContext()));
+            var test = controler.GetById(id);
             //Assert
             Assert.IsType<NotFoundResult>(test.Result);
         }
@@ -44,7 +50,9 @@ namespace TestProject1
             //Arrange
             var id = 1;
             //Act
-            var test = (new DriversController()).GetById(id);
+            var controler = new DriversController(new DriversService(new TestContext()));
+
+            var test = controler.GetById(id);
             //Assert
             Assert.IsType<ActionResult<Driver>>(test);
             //Assert.IsType<OkObjectResult>(test);

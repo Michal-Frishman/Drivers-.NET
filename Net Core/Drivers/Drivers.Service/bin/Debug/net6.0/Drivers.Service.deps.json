@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Drivers.Service/1.0.0": {
+        "dependencies": {
+          "Drivers.Core": "1.0.0"
+        },
+        "runtime": {
+          "Drivers.Service.dll": {}
+        }
+      },
+      "Drivers.Core/1.0.0": {
+        "runtime": {
+          "Drivers.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Drivers.Service/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Drivers.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
