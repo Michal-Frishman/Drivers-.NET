@@ -35,16 +35,19 @@ namespace Drivers.Service.Services
         }
         public bool Add(DriverEntity driver)
         {
-            var data = _driversRepository.GetByIdData(driver.DriverId);
+                var data = _driversRepository.GetByIdData(driver.DriverId);
             if (data != null)
                 return false;
             return _driversRepository.AddData(driver);
         }
         public bool Delete(int id)
         {
-            var item = GetById(id);
-            if (item == null) { return false; }
-            return _driversRepository.RemoveItemFromData(id);
+            if (_driversRepository.isExist(id))
+            {
+                var item = GetById(id);
+                return _driversRepository.RemoveItemFromData(id);
+            }
+            return false;
         }
 
     }

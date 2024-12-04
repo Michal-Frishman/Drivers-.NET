@@ -4,6 +4,9 @@ using Drivers.Core.Iservice;
 using Drivers.Data;
 using Drivers.Data.Repository;
 using Drivers.Service.Services;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.EntityFrameworkCore;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,22 +26,31 @@ builder.Services.AddScoped<IRepository<TravelEntity>, TravelsRepository>();
 builder.Services.AddScoped<IRepository<PassengerEntity>, PassengersRepository>();
 builder.Services.AddScoped<IRepository<FeedbackEntity>, FeedbacksRepository>();
 
-builder.Services.AddSingleton<DataContext>();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+builder.Services.AddDbContext<DataContext>(option =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    option.UseSqlServer("Data Source=DESKTOP-4R0K21U\\SQLEXPRESS;Initial Catalog=Drivers;Integrated Security=false;  Trusted_Connection = SSPI; MultipleActiveResultSets = true; TrustServerCertificate = true");
+    //option.UseSqlServer("Data Source=DESKTOP-4R0K21U\\SQLEXPRESS;Initial Catalog=Drivers;Integrated Security=false; ");
 }
+);
 
-app.UseAuthorization();
 
-app.MapControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
 
-app.Run();
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
+
+

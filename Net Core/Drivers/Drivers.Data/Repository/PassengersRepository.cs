@@ -17,7 +17,7 @@ namespace Drivers.Data.Repository
         }
         public List<PassengerEntity> GetAllData()
         {
-            return _dataContext.passengers;
+            return _dataContext.passengers.ToList();
         }
         public bool AddData(PassengerEntity passenger)
         {
@@ -63,8 +63,17 @@ namespace Drivers.Data.Repository
         {
             try
             {
-                int index = _dataContext.passengers.FindIndex(d => d.PassengerId == id);
-                _dataContext.passengers[index] = passenger;
+                int index = _dataContext.passengers.ToList().FindIndex(d => d.PassengerId == id);
+
+                if (!string.IsNullOrEmpty(passenger.FirstName))
+                    _dataContext.passengers.ToList()[index].FirstName = passenger.FirstName;
+
+                if (!string.IsNullOrEmpty(passenger.LastName))
+                    _dataContext.passengers.ToList()[index].LastName = passenger.LastName;
+
+                if (!string.IsNullOrEmpty(passenger.PhoneNumber))
+                    _dataContext.passengers.ToList()[index].PhoneNumber = passenger.PhoneNumber;
+
                 _dataContext.SaveChanges();
                 return true;
             }
@@ -74,6 +83,12 @@ namespace Drivers.Data.Repository
                 return false;
             }
 
+        }
+        public bool isExist(int id)
+        {
+            if (_dataContext.passengers.ToList().FindIndex(d => d.PassengerId == id) == -1)
+                return false;
+            return true;
         }
     }
 }

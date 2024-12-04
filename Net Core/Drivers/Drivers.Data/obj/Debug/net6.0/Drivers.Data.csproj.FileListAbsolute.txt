@@ -13,3 +13,5 @@ C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Dri
 C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\refint\Drivers.Data.dll
 C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.pdb
 C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\ref\Drivers.Data.dll
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\bin\Debug\net6.0\Drivers.Data.runtimeconfig.json
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Data\obj\Debug\net6.0\Drivers.Data.genruntimeconfig.cache

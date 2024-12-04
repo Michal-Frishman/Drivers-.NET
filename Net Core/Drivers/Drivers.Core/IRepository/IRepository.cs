@@ -14,5 +14,6 @@ namespace Drivers.Core.IRepository
         bool AddData(T t);
         bool UpdateData(int id, T value);
         bool RemoveItemFromData(int id);
+        bool isExist(int id);
     }
 }

@@ -9,3 +9,4 @@ C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Core\obj\Debug\net6.0\Dri
 C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Core\obj\Debug\net6.0\refint\Drivers.Core.dll
 C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Core\obj\Debug\net6.0\Drivers.Core.pdb
 C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Core\obj\Debug\net6.0\ref\Drivers.Core.dll
+C:\Users\user\Desktop\Drivers\Net Core\Drivers\Drivers.Core\obj\Debug\net6.0\Drivers.Core.csproj.AssemblyReference.cache

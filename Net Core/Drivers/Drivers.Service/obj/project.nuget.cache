@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7cnPzXsCy1l0OP9Ci3rt8j7j6r5OP0em1S7pTaAo9d4+BBsXeDaUYbWwOBW/oexvg0fjgOPsRS9apsTNNy0/UA==",
+  "dgSpecHash": "oCG+9QA84G4sd8IZwz2t1e/wnon02Tcmihjbg0u74+YFgSN5ZQn38qQ/8JGRHhC5HiDSv24rGqRn34ax2IdkWQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Desktop\\Drivers\\Net Core\\Drivers\\Drivers.Service\\Drivers.Service.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\mathnet.numerics\\5.0.0\\mathnet.numerics.5.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

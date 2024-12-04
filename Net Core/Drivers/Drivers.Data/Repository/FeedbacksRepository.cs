@@ -17,7 +17,7 @@ namespace Drivers.Data.Repository
         }
         public List<FeedbackEntity> GetAllData()
         {
-            return _dataContext.feedbacks;
+            return _dataContext.feedbacks.ToList();
         }
         public bool AddData(FeedbackEntity feedback)
         {
@@ -63,8 +63,18 @@ namespace Drivers.Data.Repository
         {
             try
             {
-                int index = _dataContext.feedbacks.FindIndex(d => d.FeedbackId == id);
-                _dataContext.feedbacks[index] = feedback;
+                int index = _dataContext.feedbacks.ToList().FindIndex(d => d.FeedbackId == id);
+                if (feedback.DriverId != 0)
+                    _dataContext.feedbacks.ToList()[index].DriverId = feedback.DriverId;
+                if (feedback.PassengerId != 0)
+                    _dataContext.feedbacks.ToList()[index].PassengerId = feedback.PassengerId;
+                if (feedback.Rating != 0)
+                    _dataContext.feedbacks.ToList()[index].Rating = feedback.Rating;
+                if (DateTime.Compare(feedback.FeedbackDate, DateTime.Now) != 0)
+                    _dataContext.feedbacks.ToList()[index].FeedbackDate = feedback.FeedbackDate;
+
+                if (!string.IsNullOrEmpty(feedback.FeedbackContent))
+                    _dataContext.feedbacks.ToList()[index].FeedbackContent = feedback.FeedbackContent;
                 _dataContext.SaveChanges();
                 return true;
             }
@@ -74,6 +84,12 @@ namespace Drivers.Data.Repository
                 return false;
             }
 
+        }
+        public bool isExist(int id)
+        {
+            if (_dataContext.feedbacks.ToList().FindIndex(d => d.FeedbackId == id) == -1)
+                return false;
+            return true;
         }
     }
 }

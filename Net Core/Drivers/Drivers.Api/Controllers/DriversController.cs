@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Drivers.Api.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class DriversController : ControllerBase

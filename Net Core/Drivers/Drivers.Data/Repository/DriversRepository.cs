@@ -1,5 +1,6 @@
 ﻿using Drivers.Core.Entities;
 using Drivers.Core.IRepository;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Drivers.Data.Repository
         }
         public List<DriverEntity> GetAllData()
         {
-            return _dataContext.drivers;
+            return _dataContext.drivers.ToList();
         }
         public bool AddData(DriverEntity driver)
         {
@@ -29,6 +30,8 @@ namespace Drivers.Data.Repository
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+
                 return false;
             }
         }
@@ -63,17 +66,46 @@ namespace Drivers.Data.Repository
         {
             try
             {
-                int index = _dataContext.drivers.FindIndex(d => d.DriverId == id);
-                _dataContext.drivers[index] = driver;
+                int index = _dataContext.drivers.ToList().FindIndex(d => d.DriverId == id);
+
+                if (!string.IsNullOrEmpty(driver.CarModel))
+                    _dataContext.drivers.ToList()[index].CarModel = driver.CarModel;
+
+                if (!string.IsNullOrEmpty(driver.FirstName))
+                    _dataContext.drivers.ToList()[index].FirstName = driver.FirstName;
+
+                if (!string.IsNullOrEmpty(driver.LastName))
+                    _dataContext.drivers.ToList()[index].LastName = driver.LastName;
+
+                if (driver.SeatsNumber != 0)
+                    _dataContext.drivers.ToList()[index].SeatsNumber = driver.SeatsNumber;
+
+                if (!string.IsNullOrEmpty(driver.PhoneNumber))
+                    _dataContext.drivers.ToList()[index].PhoneNumber = driver.PhoneNumber;
+
+                if (driver.LicensePlate != 0)
+                    _dataContext.drivers.ToList()[index].LicensePlate = driver.LicensePlate;
+
+                if (driver.IsAvailable != _dataContext.drivers.ToList()[index].IsAvailable)
+                    _dataContext.drivers.ToList()[index].IsAvailable = driver.IsAvailable;
+
                 _dataContext.SaveChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
                 return false;
             }
+            return true;
+        }
 
+
+
+        public bool isExist(int id)
+        {
+            if (_dataContext.drivers.ToList().FindIndex(d => d.DriverId == id) == -1)
+                return false;
+            return true;
         }
     }
 
