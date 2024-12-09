@@ -96,7 +96,6 @@ namespace Drivers.Data.Repository
             {
                 return false;
             }
-            return true;
         }
 
 
