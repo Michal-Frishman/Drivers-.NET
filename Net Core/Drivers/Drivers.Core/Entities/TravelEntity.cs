@@ -14,7 +14,11 @@ namespace Drivers.Core.Entities
         [Key]
         public int TravelId { get; set; }
         public int PassengerId { get; set; }
+        [ForeignKey(nameof(PassengerId))]
+        public PassengerEntity PassengerEntity { get; set; }
         public int DriverId { get; set; }
+        [ForeignKey(nameof(DriverId))]
+        public DriverEntity Driver { get; set; }
         public DateTime TravelDate { get; set; }
         public string DeparturePoint { get; set; }
         public string DestinationPoint { get; set; }
@@ -22,24 +26,8 @@ namespace Drivers.Core.Entities
         public decimal TravelLength { get; set; }
         [Column(TypeName = "decimal(18,4)")]
         public decimal Price { get; set; }
-        public bool IsPaid { get; set; }
+        public bool? IsPaid { get; set; }
 
-        public TravelEntity()
-        {
 
-        }
-
-        public TravelEntity(int travelId, int passengerId, int driverId, DateTime travelDate, string departurePoint, string destinationPoint, int travelLength, int price, bool isPaid)
-        {
-            TravelId = travelId;
-            PassengerId = passengerId;
-            DriverId = driverId;
-            TravelDate = travelDate;
-            DeparturePoint = departurePoint;
-            DestinationPoint = destinationPoint;
-            TravelLength = travelLength;
-            Price = price;
-            IsPaid = isPaid;
-        }
     }
 }

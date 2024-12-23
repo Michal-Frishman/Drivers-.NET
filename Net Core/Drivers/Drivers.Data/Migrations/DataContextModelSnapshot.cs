@@ -31,7 +31,6 @@ namespace Drivers.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DriverId"), 1L, 1);
 
                     b.Property<string>("CarModel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DriverTz")
@@ -42,7 +41,7 @@ namespace Drivers.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsAvailable")
+                    b.Property<bool?>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -89,6 +88,10 @@ namespace Drivers.Data.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("FeedbackId");
+
+                    b.HasIndex("DriverId");
+
+                    b.HasIndex("PassengerId");
 
                     b.ToTable("Feedbacks");
                 });
@@ -137,7 +140,7 @@ namespace Drivers.Data.Migrations
                     b.Property<int>("DriverId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsPaid")
+                    b.Property<bool?>("IsPaid")
                         .HasColumnType("bit");
 
                     b.Property<int>("PassengerId")
@@ -154,7 +157,49 @@ namespace Drivers.Data.Migrations
 
                     b.HasKey("TravelId");
 
+                    b.HasIndex("DriverId");
+
+                    b.HasIndex("PassengerId");
+
                     b.ToTable("Travels");
+                });
+
+            modelBuilder.Entity("Drivers.Core.Entities.FeedbackEntity", b =>
+                {
+                    b.HasOne("Drivers.Core.Entities.DriverEntity", "Driver")
+                        .WithMany()
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Drivers.Core.Entities.PassengerEntity", "PassengerEntity")
+                        .WithMany()
+                        .HasForeignKey("PassengerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("PassengerEntity");
+                });
+
+            modelBuilder.Entity("Drivers.Core.Entities.TravelEntity", b =>
+                {
+                    b.HasOne("Drivers.Core.Entities.DriverEntity", "Driver")
+                        .WithMany()
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Drivers.Core.Entities.PassengerEntity", "PassengerEntity")
+                        .WithMany()
+                        .HasForeignKey("PassengerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("PassengerEntity");
                 });
 #pragma warning restore 612, 618
         }

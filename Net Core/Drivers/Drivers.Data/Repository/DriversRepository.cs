@@ -86,7 +86,7 @@ namespace Drivers.Data.Repository
                 if (driver.LicensePlate != 0)
                     _dataContext.drivers.ToList()[index].LicensePlate = driver.LicensePlate;
 
-                if (driver.IsAvailable != _dataContext.drivers.ToList()[index].IsAvailable)
+                if (driver.IsAvailable != null)
                     _dataContext.drivers.ToList()[index].IsAvailable = driver.IsAvailable;
 
                 _dataContext.SaveChanges();

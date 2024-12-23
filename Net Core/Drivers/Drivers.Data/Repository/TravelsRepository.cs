@@ -69,19 +69,26 @@ namespace Drivers.Data.Repository
                 //IsPaid = isPaid;
                 if (travel.DriverId != 0)
                     _dataContext.travels.ToList()[index].DriverId = travel.DriverId;
+
                 if (travel.PassengerId != 0)
                     _dataContext.travels.ToList()[index].PassengerId = travel.PassengerId;
+
                 if (DateTime.Compare(travel.TravelDate, DateTime.Now) != 0)
                     _dataContext.travels.ToList()[index].TravelDate = travel.TravelDate;
+
                 if (!string.IsNullOrEmpty(travel.DeparturePoint))
                     _dataContext.travels.ToList()[index].DeparturePoint = travel.DeparturePoint;
+
                 if (!string.IsNullOrEmpty(travel.DestinationPoint))
                     _dataContext.travels.ToList()[index].DestinationPoint = travel.DestinationPoint;
+
                 if (travel.TravelLength != 0)
                     _dataContext.travels.ToList()[index].TravelLength = travel.TravelLength;
+
                 if (travel.Price != 0)
                     _dataContext.travels.ToList()[index].Price = travel.Price;
-                if (travel.IsPaid != _dataContext.travels.ToList()[index].IsPaid)
+
+                if (travel.IsPaid != null)
                     _dataContext.travels.ToList()[index].IsPaid = travel.IsPaid;
 
                 _dataContext.SaveChanges();
