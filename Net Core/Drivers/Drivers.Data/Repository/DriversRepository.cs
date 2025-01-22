@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Drivers.Data.Repository
 {
     public class DriversRepository : IRepository<DriverEntity>
@@ -68,26 +69,16 @@ namespace Drivers.Data.Repository
             {
                 int index = _dataContext.drivers.ToList().FindIndex(d => d.DriverId == id);
 
-                if (!string.IsNullOrEmpty(driver.CarModel))
-                    _dataContext.drivers.ToList()[index].CarModel = driver.CarModel;
+                var driverToUpdate = _dataContext.drivers.ToList()[index];
 
-                if (!string.IsNullOrEmpty(driver.FirstName))
-                    _dataContext.drivers.ToList()[index].FirstName = driver.FirstName;
+                driverToUpdate.CarModel = driver.CarModel;
+                driverToUpdate.FirstName = driver.FirstName;
+                driverToUpdate.LastName = driver.LastName;
+                driverToUpdate.SeatsNumber = driver.SeatsNumber;
+                driverToUpdate.PhoneNumber = driver.PhoneNumber;
+                driverToUpdate.LicensePlate = driver.LicensePlate;
+                driverToUpdate.IsAvailable = driver.IsAvailable;
 
-                if (!string.IsNullOrEmpty(driver.LastName))
-                    _dataContext.drivers.ToList()[index].LastName = driver.LastName;
-
-                if (driver.SeatsNumber != 0)
-                    _dataContext.drivers.ToList()[index].SeatsNumber = driver.SeatsNumber;
-
-                if (!string.IsNullOrEmpty(driver.PhoneNumber))
-                    _dataContext.drivers.ToList()[index].PhoneNumber = driver.PhoneNumber;
-
-                if (driver.LicensePlate != 0)
-                    _dataContext.drivers.ToList()[index].LicensePlate = driver.LicensePlate;
-
-                if (driver.IsAvailable != null)
-                    _dataContext.drivers.ToList()[index].IsAvailable = driver.IsAvailable;
 
                 _dataContext.SaveChanges();
                 return true;

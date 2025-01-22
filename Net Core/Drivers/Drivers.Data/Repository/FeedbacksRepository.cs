@@ -64,17 +64,14 @@ namespace Drivers.Data.Repository
             try
             {
                 int index = _dataContext.feedbacks.ToList().FindIndex(d => d.FeedbackId == id);
-                if (feedback.DriverId != 0)
-                    _dataContext.feedbacks.ToList()[index].DriverId = feedback.DriverId;
-                if (feedback.PassengerId != 0)
-                    _dataContext.feedbacks.ToList()[index].PassengerId = feedback.PassengerId;
-                if (feedback.Rating != 0)
-                    _dataContext.feedbacks.ToList()[index].Rating = feedback.Rating;
-                if (DateTime.Compare(feedback.FeedbackDate, DateTime.Now) != 0)
-                    _dataContext.feedbacks.ToList()[index].FeedbackDate = feedback.FeedbackDate;
+                var feedbackToUpdate = _dataContext.feedbacks.ToList()[index];
 
-                if (!string.IsNullOrEmpty(feedback.FeedbackContent))
-                    _dataContext.feedbacks.ToList()[index].FeedbackContent = feedback.FeedbackContent;
+                feedbackToUpdate.DriverId = feedback.DriverId;
+                feedbackToUpdate.PassengerId = feedback.PassengerId;
+                feedbackToUpdate.Rating = feedback.Rating;
+                feedbackToUpdate.FeedbackDate = feedback.FeedbackDate;
+                feedbackToUpdate.FeedbackContent = feedback.FeedbackContent;
+
                 _dataContext.SaveChanges();
                 return true;
             }

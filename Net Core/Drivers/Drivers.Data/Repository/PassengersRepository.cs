@@ -65,14 +65,12 @@ namespace Drivers.Data.Repository
             {
                 int index = _dataContext.passengers.ToList().FindIndex(d => d.PassengerId == id);
 
-                if (!string.IsNullOrEmpty(passenger.FirstName))
-                    _dataContext.passengers.ToList()[index].FirstName = passenger.FirstName;
+                var passengerToUpdate = _dataContext.passengers.ToList()[index];
 
-                if (!string.IsNullOrEmpty(passenger.LastName))
-                    _dataContext.passengers.ToList()[index].LastName = passenger.LastName;
+                passengerToUpdate.FirstName = passenger.FirstName;
+                passengerToUpdate.LastName = passenger.LastName;
+                passengerToUpdate.PhoneNumber = passenger.PhoneNumber;
 
-                if (!string.IsNullOrEmpty(passenger.PhoneNumber))
-                    _dataContext.passengers.ToList()[index].PhoneNumber = passenger.PhoneNumber;
 
                 _dataContext.SaveChanges();
                 return true;

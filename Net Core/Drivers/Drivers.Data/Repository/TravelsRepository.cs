@@ -67,29 +67,17 @@ namespace Drivers.Data.Repository
             {
                 int index = _dataContext.travels.ToList().FindIndex(d => d.TravelId == id);
                 //IsPaid = isPaid;
-                if (travel.DriverId != 0)
-                    _dataContext.travels.ToList()[index].DriverId = travel.DriverId;
+                var travelToUpdate = _dataContext.travels.ToList()[index];
 
-                if (travel.PassengerId != 0)
-                    _dataContext.travels.ToList()[index].PassengerId = travel.PassengerId;
+                travelToUpdate.DriverId = travel.DriverId;
+                travelToUpdate.PassengerId = travel.PassengerId;
+                travelToUpdate.TravelDate = travel.TravelDate;
+                travelToUpdate.DeparturePoint = travel.DeparturePoint;
+                travelToUpdate.DestinationPoint = travel.DestinationPoint;
+                travelToUpdate.TravelLength = travel.TravelLength;
+                travelToUpdate.Price = travel.Price;
+                travelToUpdate.IsPaid = travel.IsPaid;
 
-                if (DateTime.Compare(travel.TravelDate, DateTime.Now) != 0)
-                    _dataContext.travels.ToList()[index].TravelDate = travel.TravelDate;
-
-                if (!string.IsNullOrEmpty(travel.DeparturePoint))
-                    _dataContext.travels.ToList()[index].DeparturePoint = travel.DeparturePoint;
-
-                if (!string.IsNullOrEmpty(travel.DestinationPoint))
-                    _dataContext.travels.ToList()[index].DestinationPoint = travel.DestinationPoint;
-
-                if (travel.TravelLength != 0)
-                    _dataContext.travels.ToList()[index].TravelLength = travel.TravelLength;
-
-                if (travel.Price != 0)
-                    _dataContext.travels.ToList()[index].Price = travel.Price;
-
-                if (travel.IsPaid != null)
-                    _dataContext.travels.ToList()[index].IsPaid = travel.IsPaid;
 
                 _dataContext.SaveChanges();
                 return true;
