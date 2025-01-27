@@ -12,11 +12,10 @@ namespace Drivers.Core.Entities
     public class PassengerEntity
     {
         [Key]
-        public int PassengerId { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
-
 
     }
 }

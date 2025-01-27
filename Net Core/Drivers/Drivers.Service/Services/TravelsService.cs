@@ -35,7 +35,7 @@ namespace Drivers.Service.Services
         }
         public bool Add(TravelEntity travel)
         {
-            var data = _travelsRepository.GetByIdData(travel.TravelId);
+            var data = _travelsRepository.GetByIdData(travel.Id);
             if (data != null)
                 return false;
             return _travelsRepository.AddData(travel);

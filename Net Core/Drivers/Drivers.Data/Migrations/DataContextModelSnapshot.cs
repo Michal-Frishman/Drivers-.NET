@@ -24,17 +24,13 @@ namespace Drivers.Data.Migrations
 
             modelBuilder.Entity("Drivers.Core.Entities.DriverEntity", b =>
                 {
-                    b.Property<int>("DriverId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DriverId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("CarModel")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DriverTz")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -58,28 +54,32 @@ namespace Drivers.Data.Migrations
                     b.Property<int>("SeatsNumber")
                         .HasColumnType("int");
 
-                    b.HasKey("DriverId");
+                    b.Property<string>("Tz")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Drivers");
                 });
 
             modelBuilder.Entity("Drivers.Core.Entities.FeedbackEntity", b =>
                 {
-                    b.Property<int>("FeedbackId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DriverId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FeedbackContent")
+                    b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("FeedbackDate")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DriverId")
+                        .HasColumnType("int");
 
                     b.Property<int>("PassengerId")
                         .HasColumnType("int");
@@ -87,7 +87,7 @@ namespace Drivers.Data.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.HasKey("FeedbackId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DriverId");
 
@@ -98,11 +98,11 @@ namespace Drivers.Data.Migrations
 
             modelBuilder.Entity("Drivers.Core.Entities.PassengerEntity", b =>
                 {
-                    b.Property<int>("PassengerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PassengerId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -116,18 +116,21 @@ namespace Drivers.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PassengerId");
+                    b.HasKey("Id");
 
                     b.ToTable("Passengers");
                 });
 
             modelBuilder.Entity("Drivers.Core.Entities.TravelEntity", b =>
                 {
-                    b.Property<int>("TravelId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TravelId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DeparturePoint")
                         .IsRequired()
@@ -143,19 +146,16 @@ namespace Drivers.Data.Migrations
                     b.Property<bool?>("IsPaid")
                         .HasColumnType("bit");
 
+                    b.Property<decimal>("Length")
+                        .HasColumnType("decimal(18,4)");
+
                     b.Property<int>("PassengerId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,4)");
 
-                    b.Property<DateTime>("TravelDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("TravelLength")
-                        .HasColumnType("decimal(18,4)");
-
-                    b.HasKey("TravelId");
+                    b.HasKey("Id");
 
                     b.HasIndex("DriverId");
 

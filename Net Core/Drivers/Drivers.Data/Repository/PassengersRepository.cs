@@ -35,7 +35,7 @@ namespace Drivers.Data.Repository
 
         public PassengerEntity GetByIdData(int id)
         {
-            return _dataContext.passengers.Where(t => t.PassengerId == id).FirstOrDefault();
+            return _dataContext.passengers.Where(t => t.Id == id).FirstOrDefault();
         }
 
         public bool RemoveItemFromData(int id)
@@ -63,7 +63,7 @@ namespace Drivers.Data.Repository
         {
             try
             {
-                int index = _dataContext.passengers.ToList().FindIndex(d => d.PassengerId == id);
+                int index = _dataContext.passengers.ToList().FindIndex(d => d.Id == id);
 
                 var passengerToUpdate = _dataContext.passengers.ToList()[index];
 
@@ -84,7 +84,7 @@ namespace Drivers.Data.Repository
         }
         public bool isExist(int id)
         {
-            if (_dataContext.passengers.ToList().FindIndex(d => d.PassengerId == id) == -1)
+            if (_dataContext.passengers.ToList().FindIndex(d => d.Id == id) == -1)
                 return false;
             return true;
         }

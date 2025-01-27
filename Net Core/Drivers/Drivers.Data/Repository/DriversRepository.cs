@@ -1,5 +1,6 @@
 ﻿using Drivers.Core.Entities;
 using Drivers.Core.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Drivers.Data.Repository
 
         public DriverEntity GetByIdData(int id)
         {
-            return _dataContext.drivers.Where(t => t.DriverId == id).FirstOrDefault();
+            return _dataContext.drivers.Where(t => t.Id == id).FirstOrDefault();
         }
 
         public bool RemoveItemFromData(int id)
@@ -67,7 +68,7 @@ namespace Drivers.Data.Repository
         {
             try
             {
-                int index = _dataContext.drivers.ToList().FindIndex(d => d.DriverId == id);
+                int index = _dataContext.drivers.ToList().FindIndex(d => d.Id == id);
 
                 var driverToUpdate = _dataContext.drivers.ToList()[index];
 
@@ -93,7 +94,7 @@ namespace Drivers.Data.Repository
 
         public bool isExist(int id)
         {
-            if (_dataContext.drivers.ToList().FindIndex(d => d.DriverId == id) == -1)
+            if (_dataContext.drivers.ToList().FindIndex(d => d.Id == id) == -1)
                 return false;
             return true;
         }

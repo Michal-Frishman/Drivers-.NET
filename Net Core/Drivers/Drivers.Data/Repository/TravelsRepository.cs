@@ -1,5 +1,6 @@
 ﻿using Drivers.Core.Entities;
 using Drivers.Core.IRepository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,8 @@ namespace Drivers.Data.Repository
         }
         public List<TravelEntity> GetAllData()
         {
-            return _dataContext.travels.ToList();
+
+            return _dataContext.travels.Include(x => x.Passenger).Include(y => y.Driver).ToList();
         }
         public bool AddData(TravelEntity travel)
         {
@@ -37,7 +39,7 @@ namespace Drivers.Data.Repository
 
         public TravelEntity GetByIdData(int id)
         {
-            return _dataContext.travels.Where(t => t.TravelId == id).FirstOrDefault();
+            return _dataContext.travels.Where(t => t.Id == id).FirstOrDefault();
         }
 
         public bool RemoveItemFromData(int id)
@@ -65,16 +67,16 @@ namespace Drivers.Data.Repository
         {
             try
             {
-                int index = _dataContext.travels.ToList().FindIndex(d => d.TravelId == id);
+                int index = _dataContext.travels.ToList().FindIndex(d => d.Id == id);
                 //IsPaid = isPaid;
                 var travelToUpdate = _dataContext.travels.ToList()[index];
 
                 travelToUpdate.DriverId = travel.DriverId;
                 travelToUpdate.PassengerId = travel.PassengerId;
-                travelToUpdate.TravelDate = travel.TravelDate;
+                travelToUpdate.Date = travel.Date;
                 travelToUpdate.DeparturePoint = travel.DeparturePoint;
                 travelToUpdate.DestinationPoint = travel.DestinationPoint;
-                travelToUpdate.TravelLength = travel.TravelLength;
+                travelToUpdate.Length = travel.Length;
                 travelToUpdate.Price = travel.Price;
                 travelToUpdate.IsPaid = travel.IsPaid;
 
@@ -91,7 +93,7 @@ namespace Drivers.Data.Repository
         }
         public bool isExist(int id)
         {
-            if (_dataContext.travels.ToList().FindIndex(d => d.TravelId == id) == -1)
+            if (_dataContext.travels.ToList().FindIndex(d => d.Id == id) == -1)
                 return false;
             return true;
         }

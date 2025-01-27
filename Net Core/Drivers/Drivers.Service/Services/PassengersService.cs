@@ -23,7 +23,7 @@ namespace Drivers.Service.Services
         }
         public bool Add(PassengerEntity passenger)
         {
-            var data = _passangersRepository.GetByIdData(passenger.PassengerId);
+            var data = _passangersRepository.GetByIdData(passenger.Id);
             if (data != null)
                 return false;
             return _passangersRepository.AddData(passenger);
@@ -37,7 +37,7 @@ namespace Drivers.Service.Services
         }
         public bool Update(int id, PassengerEntity passenger)
         {
-            var data = _passangersRepository.GetByIdData(passenger.PassengerId);
+            var data = _passangersRepository.GetByIdData(passenger.Id);
             if (data != null)
                 return false;
             return _passangersRepository.AddData(passenger);

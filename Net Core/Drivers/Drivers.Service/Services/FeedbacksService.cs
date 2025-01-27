@@ -38,7 +38,7 @@ namespace Drivers.Service.Services
         }
         public bool Add(FeedbackEntity feedback)
         {
-            var data = _feedbackRepository.GetByIdData(feedback.FeedbackId);
+            var data = _feedbackRepository.GetByIdData(feedback.Id);
             if (data != null)
                 return false;
             return _feedbackRepository.AddData(feedback);

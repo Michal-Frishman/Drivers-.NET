@@ -12,7 +12,7 @@ namespace Drivers.Core.Entities
     public class FeedbackEntity
     {
         [Key]
-        public int FeedbackId { get; set; }
+        public int Id { get; set; }
         public int DriverId { get; set; }
 
         [ForeignKey(nameof(DriverId))]
@@ -20,10 +20,10 @@ namespace Drivers.Core.Entities
 
         public int PassengerId { get; set; }
         [ForeignKey(nameof(PassengerId))]
-        public PassengerEntity PassengerEntity { get; set; }
+        public PassengerEntity Passenger { get; set; }
         public int Rating { get; set; }
-        public DateTime FeedbackDate { get; set; }
-        public string FeedbackContent { get; set; }
+        public DateTime Date { get; set; }
+        public string Content { get; set; }
 
 
     }

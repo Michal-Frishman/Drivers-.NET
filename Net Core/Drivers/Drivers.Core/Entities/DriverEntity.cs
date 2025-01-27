@@ -12,8 +12,8 @@ namespace Drivers.Core.Entities
     public class DriverEntity
     {
         [Key]
-        public int DriverId { get; set; }
-        public string DriverTz { get; set; }
+        public int Id { get; set; }
+        public string Tz { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; } 
         public int LicensePlate { get; set; }

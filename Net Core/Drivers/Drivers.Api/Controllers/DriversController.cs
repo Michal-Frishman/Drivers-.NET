@@ -69,7 +69,7 @@ namespace Drivers.Api.Controllers
 
         //private bool isValid(DriverEntity driver)
         //{
-        //    return Validation.IsValidIsraeliID(driver.DriverTz);
+        //    return Validation.IsValidIsraeliID(driver.Tz);
         //}
     }
 }

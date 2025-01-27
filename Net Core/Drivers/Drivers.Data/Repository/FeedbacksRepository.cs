@@ -1,5 +1,6 @@
 ﻿using Drivers.Core.Entities;
 using Drivers.Core.IRepository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Drivers.Data.Repository
         }
         public List<FeedbackEntity> GetAllData()
         {
-            return _dataContext.feedbacks.ToList();
+            return _dataContext.feedbacks.Include(x=>x.Passenger).Include(y=>y.Driver).ToList();
         }
         public bool AddData(FeedbackEntity feedback)
         {
@@ -35,7 +36,7 @@ namespace Drivers.Data.Repository
 
         public FeedbackEntity GetByIdData(int id)
         {
-            return _dataContext.feedbacks.Where(t => t.FeedbackId == id).FirstOrDefault();
+            return _dataContext.feedbacks.Where(t => t.Id == id).FirstOrDefault();
         }
 
         public bool RemoveItemFromData(int id)
@@ -63,14 +64,14 @@ namespace Drivers.Data.Repository
         {
             try
             {
-                int index = _dataContext.feedbacks.ToList().FindIndex(d => d.FeedbackId == id);
+                int index = _dataContext.feedbacks.ToList().FindIndex(d => d.Id == id);
                 var feedbackToUpdate = _dataContext.feedbacks.ToList()[index];
 
                 feedbackToUpdate.DriverId = feedback.DriverId;
                 feedbackToUpdate.PassengerId = feedback.PassengerId;
                 feedbackToUpdate.Rating = feedback.Rating;
-                feedbackToUpdate.FeedbackDate = feedback.FeedbackDate;
-                feedbackToUpdate.FeedbackContent = feedback.FeedbackContent;
+                feedbackToUpdate.Date = feedback.Date;
+                feedbackToUpdate.Content = feedback.Content;
 
                 _dataContext.SaveChanges();
                 return true;
@@ -84,7 +85,7 @@ namespace Drivers.Data.Repository
         }
         public bool isExist(int id)
         {
-            if (_dataContext.feedbacks.ToList().FindIndex(d => d.FeedbackId == id) == -1)
+            if (_dataContext.feedbacks.ToList().FindIndex(d => d.Id == id) == -1)
                 return false;
             return true;
         }

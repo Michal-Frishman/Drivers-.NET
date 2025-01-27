@@ -35,7 +35,7 @@ namespace Drivers.Service.Services
         }
         public bool Add(DriverEntity driver)
         {
-                var data = _driversRepository.GetByIdData(driver.DriverId);
+                var data = _driversRepository.GetByIdData(driver.Id);
             if (data != null)
                 return false;
             return _driversRepository.AddData(driver);
